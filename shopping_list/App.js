@@ -7,8 +7,6 @@ export default function App() {
   const [teksti, setTeksti] = useState('');
   const [items, setItem] = useState([]);
   
-  
-
   const talleta = () =>{
     setItem([...items, { key: String(items.length), text: teksti}]);
     setTeksti('');
