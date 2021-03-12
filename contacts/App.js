@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
 import * as Contacts from 'expo-contacts';
 
 export default function App() {
@@ -9,28 +9,25 @@ export default function App() {
 
   const getContacts= async() => {
     const{ status} = await Contacts.requestPermissionsAsync();
-    console.log("data")
     if (status=== 'granted'){
-      console.log("granted")
       const{ data } = await Contacts.getContactsAsync({
         fields: [Contacts.Fields.PhoneNumbers],
       });
-      
-      console.log(data)
       if (data.length > 0) {
-        console.log(data[0])
-        console.log("data")
-        setContact(data[0]);
+        setContact(data);
       }
     }
   }
   
-  
   return (
     <View style={styles.container}>
-      <Text>Hemuli</Text>
-      <Text>{contact.name}</Text>
-      <Button title="GetContact" onPress={getContacts} />
+      <Text style={styles.text}>Contacts</Text>
+      <Button title="GetContacts" onPress={getContacts} />
+      <FlatList
+        style={styles.flatlist}
+        data = {contact}
+        renderItem={({item}) => <Text>{item.name}   {item.phoneNumbers[0].number}</Text>}
+      />
       
     </View>
   );
@@ -43,15 +40,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  flatlist: {
+    flex: 1,
+  }, 
+  text: {
+    flex: 1,
+    maxHeight: 40,
+    marginTop: 30,
+  }
 });
-
-/* 
-"phoneNumbers": Array [
-  Object {
-      "id": "1",
-      "isPrimary": 0,
-      "label": "mobile",
-      "number": "1 234-566-985",
-      "type": "2",
-  },
-], */
