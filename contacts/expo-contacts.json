@@ -1,0 +1,19 @@
+{
+"contactType": "person",
+"firstName": "Juha",
+"id": "1",
+"imageAvailable": false,
+"lastName": "Hinkula",
+"lookupKey": "0r1-3B5137293739433D513F29",
+"name": "Juha Hinkula",
+"phoneNumbers": 
+    [
+        {
+        "id": "1",
+        "isPrimary": 0,
+        "label": "mobile",
+        "number": "1 234-566-985",
+        "type": "2"
+        }
+    ]
+}
